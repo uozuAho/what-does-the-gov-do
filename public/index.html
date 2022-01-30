@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What does the government do?</title>
+</head>
+
+<body>
+  <h1>Yepo</h1>
+  <h2>Policies</h2>
+  <ul id="policy-list"></ul>
+
+  <template id="policy-template">
+    <li id="pt-name"></li>
+  </template>
+</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (event) => {
+    const policies = await fetch('/.netlify/functions/policies').then(r => r.json());
+    const listElement = document.getElementById('policy-list');
+    for (const policy of policies) {
+      const policyElement = document.querySelector('#policy-template').content.cloneNode(true);
+      policyElement.querySelector('#pt-name').textContent = policy.name;
+      listElement.appendChild(policyElement);
+    }
+  });
+</script>
+</html>
