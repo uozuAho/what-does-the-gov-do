@@ -12,7 +12,7 @@
   <ul id="policy-list"></ul>
 
   <template id="policy-template">
-    <li id="pt-name"></li>
+    <li><a id="pt-link"></a></li>
   </template>
 </body>
 
@@ -22,7 +22,8 @@
     const listElement = document.getElementById('policy-list');
     for (const policy of policies) {
       const policyElement = document.querySelector('#policy-template').content.cloneNode(true);
-      policyElement.querySelector('#pt-name').textContent = policy.name;
+      policyElement.querySelector('#pt-link').textContent = policy.name;
+      policyElement.querySelector('#pt-link').setAttribute('href', `policies/${policy.id}`);
       listElement.appendChild(policyElement);
     }
   });
