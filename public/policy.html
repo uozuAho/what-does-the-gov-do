@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What does the government do?</title>
+</head>
+
+<body>
+  <h1>Policy</h1>
+  <div id="asdf"></div>
+</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (event) => {
+    const id = new URLSearchParams(document.location.search).get('id');
+    const policy = await fetch(`/.netlify/functions/policy?id=${id}`).then(r => r.json());
+    console.log(policy);
+  });
+</script>
+</html>

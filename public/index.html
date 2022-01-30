@@ -23,7 +23,7 @@
     for (const policy of policies) {
       const policyElement = document.querySelector('#policy-template').content.cloneNode(true);
       policyElement.querySelector('#pt-link').textContent = policy.name;
-      policyElement.querySelector('#pt-link').setAttribute('href', `policies/${policy.id}`);
+      policyElement.querySelector('#pt-link').setAttribute('href', `policy?id=${policy.id}`);
       listElement.appendChild(policyElement);
     }
   });
