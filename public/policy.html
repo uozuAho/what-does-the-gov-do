@@ -7,15 +7,29 @@
 </head>
 
 <body>
-  <h1>Policy</h1>
+  <h1 id="policy-title">Policy</h1>
+  <div id="chartElement" style="width:1000px;height:800px;"></div>
   <div id="asdf"></div>
 </body>
 
+<script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async (event) => {
     const id = new URLSearchParams(document.location.search).get('id');
     const policy = await fetch(`/.netlify/functions/policy?id=${id}`).then(r => r.json());
     console.log(policy);
+    const traces = policy.partyAgreements.map(a => ({
+      name: a.party,
+      x: a.agreements,
+      type: 'histogram',
+      marker: {
+        color: a.color
+      }
+    }));
+
+    console.log(traces);
+    const layout = {barmode: "stack"};
+    Plotly.newPlot('chartElement', traces, layout);
   });
 </script>
 </html>
