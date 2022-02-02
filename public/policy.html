@@ -8,6 +8,7 @@
 
 <body>
   <h1 id="policy-title">Policy</h1>
+  <p id="policy-description"></p>
   <div id="chartElement" style="width:1000px;height:800px;"></div>
   <div id="asdf"></div>
 </body>
@@ -17,8 +18,13 @@
   document.addEventListener('DOMContentLoaded', async (event) => {
     const id = new URLSearchParams(document.location.search).get('id');
     const policy = await fetch(`/.netlify/functions/policy?id=${id}`).then(r => r.json());
-    console.log(policy);
-    const traces = policy.partyAgreements.map(a => ({
+    document.getElementById('policy-title').textContent = policy.title;
+    document.getElementById('policy-description').textContent = policy.description;
+    plotAgreements('chartElement', policy.partyAgreements);
+  });
+
+  function plotAgreements(element, partyAgreements) {
+    const traces = partyAgreements.map(a => ({
       name: a.party,
       x: a.agreements,
       type: 'histogram',
@@ -27,9 +33,8 @@
       }
     }));
 
-    console.log(traces);
     const layout = {barmode: "stack"};
-    Plotly.newPlot('chartElement', traces, layout);
-  });
+    Plotly.newPlot(element, traces, layout);
+  }
 </script>
 </html>
