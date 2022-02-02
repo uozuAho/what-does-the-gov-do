@@ -12,6 +12,7 @@ ntl dev
 ```
 
 # To do
-- implement same functionality as https://github.com/uozuAho/they_vote_for_me
-  - other ui bits
+- docs: where the data is from, what it means
+- policy details: show all members' agreement in a table below the chart, ie
+  no click handler
 - loading indicator

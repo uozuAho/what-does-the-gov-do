@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What does the government do?</title>
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="policies">Policies</a>
+  </nav>
+
+  <h1>Policies</h1>
+
+  <p>These policies are from <a
+  href="https://theyvoteforyou.org.au/policies">They Vote For You</a>: "Policies
+  are a group of votes which, taken together, indicate a particular stance on an
+  issue." Click on a policy to see how much each party/MP supports it.
+  </p>
+
+  <ul id="policy-list"></ul>
+
+  <template id="policy-template">
+    <li><a id="pt-link"></a></li>
+  </template>
+</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (event) => {
+    const policies = await fetch('/.netlify/functions/policies').then(r => r.json());
+    const listElement = document.getElementById('policy-list');
+    for (const policy of policies) {
+      const policyElement = document.querySelector('#policy-template').content.cloneNode(true);
+      policyElement.querySelector('#pt-link').textContent = policy.name;
+      policyElement.querySelector('#pt-link').setAttribute('href', `policy?id=${policy.id}`);
+      listElement.appendChild(policyElement);
+    }
+  });
+</script>
+</html>

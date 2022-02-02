@@ -9,12 +9,16 @@
 <body>
   <nav>
     <a href="/">Home</a>
+    <a href="policies">Policies</a>
   </nav>
 
   <h1 id="policy-title">Policy</h1>
   <p id="policy-description"></p>
+  <a id="policy-tvfy-link">View policy on They Vote For You</a>
+
   <div id="chartElement" style="width:1000px;height:800px;"></div>
   <p>&lt;-- against       |       for --&gt;</p>
+
   <ul id="membersDataElement"></ul>
 </body>
 
@@ -22,10 +26,16 @@
 <script>
   document.addEventListener('DOMContentLoaded', async (event) => {
     const id = new URLSearchParams(document.location.search).get('id');
+
     const policy = await fetch(`/.netlify/functions/policy?id=${id}`).then(r => r.json());
+
     document.getElementById('policy-title').textContent = policy.title;
     document.getElementById('policy-description').textContent = policy.description;
+    document.getElementById('policy-tvfy-link')
+      .setAttribute('href', `https://theyvoteforyou.org.au/policies/${id}`)
+
     plotAgreements('chartElement', policy.partyAgreements);
+
     document.getElementById('chartElement')
       .on('plotly_click', event => {
         handleHistogramClick(event, policy.memberDetails);
