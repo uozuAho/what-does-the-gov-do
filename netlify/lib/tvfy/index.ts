@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 /**
  * https://theyvoteforyou.org.au/help/data#policy
  */
- interface TvfyPolicy {
+export interface TvfyPolicy {
   id: number;
   name: string;
   description: string;

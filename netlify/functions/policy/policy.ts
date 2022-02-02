@@ -1,5 +1,5 @@
 import { Handler } from '@netlify/functions';
-import { Tvfy } from '../../lib/tvfy';
+import { Tvfy, TvfyPolicy } from '../../lib/tvfy';
 
 /**
  * Expected request params:
@@ -21,48 +21,42 @@ interface PartyAgreement {
   color: string | null;
 }
 
-// todo: make this implement PolicyDetails?
-class PolicyAgreementByParty {
-  public partyAgreements: Map<string, PartyAgreement> = new Map();
-
-  constructor(
-    public title: string,
-    public description: string) {}
-
-  public toJson() {
-    return JSON.stringify({
-      title: this.title,
-      description: this.description,
-      partyAgreements: Array.from(this.partyAgreements.values())
-    });
-  }
-}
-
 export const handler: Handler = async (event, context) => {
   const { id } = event.queryStringParameters;
   const tvfy = new Tvfy();
 
   const policy = await tvfy.policy(Number(id));
+  const agreements = extractPartyAgreements(policy);
 
-  const asdf = new PolicyAgreementByParty(policy.name, policy.description);
+  const policyDetails: PolicyDetails = {
+    title: policy.name,
+    description: policy.description,
+    partyAgreements: agreements
+  };
 
-  const partyAgreements = policy.people_comparisons.reduce((parties, pc) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify(policyDetails),
+  }
+}
+
+function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
+  const map: Map<string, PartyAgreement> = new Map();
+
+  policy.people_comparisons.reduce((map, pc) => {
     const party = pc.person.latest_member.party;
-    if (!parties.partyAgreements.has(party)) {
-      parties.partyAgreements.set(party, {
+    if (!map.has(party)) {
+      map.set(party, {
         party,
         agreements: [],
         color: null
       });
     }
 
-    parties.partyAgreements.get(party).agreements.push(new Number(pc.agreement));
+    map.get(party).agreements.push(new Number(pc.agreement));
 
-    return parties;
-  }, asdf);
+    return map;
+  }, map);
 
-  return {
-    statusCode: 200,
-    body: partyAgreements.toJson(),
-  }
+  return Array.from(map.values());
 }
