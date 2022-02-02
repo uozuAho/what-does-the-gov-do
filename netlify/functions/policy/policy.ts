@@ -1,43 +1,27 @@
 import { Handler } from '@netlify/functions';
-import fetch from 'node-fetch';
+import { Tvfy } from '../../lib/tvfy';
 
 /**
- * https://theyvoteforyou.org.au/help/data#policy
+ * Expected request params:
+ * id: policy id
  */
-interface TvfyPolicy {
-  id: number;
-  name: string;
+
+/**
+ * The response of this API
+ */
+interface PolicyDetails {
+  title: string;
   description: string;
-  provisional: boolean;
-  policy_divisions: TvfyPolicyDivision[]
-  people_comparisons: TvfyPersonComparison[]
+  partyAgreements: PartyAgreement[]
 }
 
-interface TvfyPolicyDivision {
-  // incomplete
-  division: {};
-  vote: string;
-  strong: boolean;
+interface PartyAgreement {
+  party: string;
+  agreements: Number[];
+  color: string | null;
 }
 
-interface TvfyPersonComparison {
-  person: {
-    id: number;
-    latest_member: {
-      id: number;
-      name: {
-        first: string;
-        last: string;
-      };
-      electorate: string;
-      house: string;
-      party: string;
-    }
-  };
-  agreement: string;
-  voted: boolean;
-}
-
+// todo: make this implement PolicyDetails?
 class PolicyAgreementByParty {
   public partyAgreements: Map<string, PartyAgreement> = new Map();
 
@@ -54,18 +38,11 @@ class PolicyAgreementByParty {
   }
 }
 
-interface PartyAgreement {
-  party: string;
-  agreements: Number[];
-  color: string | null;
-}
-
 export const handler: Handler = async (event, context) => {
-  const apiKey = process.env.TVFY_API_KEY;
   const { id } = event.queryStringParameters;
+  const tvfy = new Tvfy();
 
-  const policy = await fetch(`https://theyvoteforyou.org.au/api/v1/policies/${id}.json?key=${apiKey}`)
-    .then(response => response.json()) as TvfyPolicy;
+  const policy = await tvfy.policy(Number(id));
 
   const asdf = new PolicyAgreementByParty(policy.name, policy.description);
 
