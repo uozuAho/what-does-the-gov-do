@@ -1,5 +1,5 @@
 import { Handler } from '@netlify/functions';
-import { Tvfy, TvfyPolicy } from '../../lib/tvfy';
+import { Tvfy, TvfyPersonComparison, TvfyPolicy } from '../../lib/tvfy';
 
 /**
  * Expected request params:
@@ -35,12 +35,7 @@ export const handler: Handler = async (event, context) => {
 
   const policy = await tvfy.policy(Number(id));
   const partyAgreements = extractPartyAgreements(policy);
-  const memberDetails: MemberDetails[] = policy.people_comparisons.map(pc => ({
-    name: `${pc.person.latest_member.name.first} ${pc.person.latest_member.name.last}`,
-    party: pc.person.latest_member.party,
-    electorate: pc.person.latest_member.electorate,
-    agreement: Number(pc.agreement)
-  }));
+  const memberDetails = policy.people_comparisons.map(pc => toMemberDetails(pc));
 
   const policyDetails: PolicyDetails = {
     title: policy.name,
@@ -74,4 +69,13 @@ function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
   }, map);
 
   return Array.from(map.values());
+}
+
+function toMemberDetails(pc: TvfyPersonComparison): MemberDetails {
+  return {
+    name: `${pc.person.latest_member.name.first} ${pc.person.latest_member.name.last}`,
+    party: pc.person.latest_member.party,
+    electorate: pc.person.latest_member.electorate,
+    agreement: Number(pc.agreement)
+  };
 }

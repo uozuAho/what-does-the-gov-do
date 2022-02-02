@@ -12,14 +12,14 @@ export interface TvfyPolicy {
   people_comparisons: TvfyPersonComparison[]
 }
 
-interface TvfyPolicyDivision {
+export interface TvfyPolicyDivision {
   // incomplete
   division: {};
   vote: string;
   strong: boolean;
 }
 
-interface TvfyPersonComparison {
+export interface TvfyPersonComparison {
   person: {
     id: number;
     latest_member: {
