@@ -13,6 +13,7 @@ interface PolicyDetails {
   title: string;
   description: string;
   partyAgreements: PartyAgreement[]
+  memberDetails: MemberDetails[]
 }
 
 interface PartyAgreement {
@@ -21,17 +22,31 @@ interface PartyAgreement {
   color: string | null;
 }
 
+interface MemberDetails {
+  name: string;
+  party: string;
+  electorate: string;
+  agreement: number;
+}
+
 export const handler: Handler = async (event, context) => {
   const { id } = event.queryStringParameters;
   const tvfy = new Tvfy();
 
   const policy = await tvfy.policy(Number(id));
-  const agreements = extractPartyAgreements(policy);
+  const partyAgreements = extractPartyAgreements(policy);
+  const memberDetails: MemberDetails[] = policy.people_comparisons.map(pc => ({
+    name: `${pc.person.latest_member.name.first} ${pc.person.latest_member.name.last}`,
+    party: pc.person.latest_member.party,
+    electorate: pc.person.latest_member.electorate,
+    agreement: Number(pc.agreement)
+  }));
 
   const policyDetails: PolicyDetails = {
     title: policy.name,
     description: policy.description,
-    partyAgreements: agreements
+    partyAgreements,
+    memberDetails
   };
 
   return {
