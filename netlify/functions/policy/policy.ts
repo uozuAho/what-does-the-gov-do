@@ -59,7 +59,7 @@ function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
       map.set(party, {
         party,
         agreements: [],
-        color: null
+        color: partyColour(party)
       });
     }
 
@@ -69,6 +69,17 @@ function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
   }, map);
 
   return Array.from(map.values());
+}
+
+const PARTY_COLOURS = {
+  "National Party": "aqua",
+  "Liberal Party": "blue",
+  "Australian Labor Party": "red",
+  "Australian Greens": "green",
+};
+
+function partyColour(party: string): string | null {
+  return PARTY_COLOURS[party] ?? null;
 }
 
 function toMemberDetails(pc: TvfyPersonComparison): MemberDetails {
