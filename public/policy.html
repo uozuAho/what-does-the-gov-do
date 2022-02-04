@@ -16,8 +16,7 @@
   <p id="policy-description"></p>
   <a id="policy-tvfy-link">View policy on They Vote For You</a>
 
-  <div id="chartElement" style="width:1000px;height:800px;"></div>
-  <p>&lt;-- against       |       for --&gt;</p>
+  <div id="chartElement" style="width:1000px;height:700px;"></div>
 
   <ul id="membersDataElement"></ul>
 </body>
@@ -52,8 +51,22 @@
       }
     }));
 
-    const layout = {barmode: "stack"};
-    Plotly.newPlot(element, traces, layout);
+    const layout = {
+      barmode: "stack",
+      xaxis: {
+        title: '<--- against           for --->',
+        showticklabels: false
+      },
+      yaxis: {
+        showticklabels: false
+      }
+    };
+
+    const config = {
+      displayModeBar: false,
+    };
+
+    Plotly.newPlot(element, traces, layout, config);
   }
 
   function handleHistogramClick(event, memberDetails) {
