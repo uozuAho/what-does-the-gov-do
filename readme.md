@@ -13,8 +13,8 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
-- check plot vs table: data match?
-- list of MPs on click
+- MP tables
+  - make colour wider
   - add links to member
 ## feedback
 - policy list is overwhelming. show me policies grouped by area of concern

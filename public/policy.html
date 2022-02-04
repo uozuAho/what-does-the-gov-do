@@ -76,7 +76,7 @@
     plotAgreements('chartElement', policy.partyAgreements);
 
     const memberTable = document.getElementById('member-table');
-    for (const member of policy.memberDetails.sort((a, b) => a.agreement - b.agreement)) {
+    for (const member of policy.memberDetails.slice().sort((a, b) => a.agreement - b.agreement)) {
       const row = document.querySelector('#row-template').content.cloneNode(true);
       row.querySelector('#rt-colour').style.backgroundColor = member.colour;
       row.querySelector('#rt-party').textContent = member.party;
