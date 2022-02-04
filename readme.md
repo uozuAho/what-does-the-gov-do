@@ -15,8 +15,7 @@ ntl dev
 - docs: where the data is from, what it means
 ## nice to have
 - loading indicator
-- policy details: show all members' agreement in a table below the chart, ie
-  no click handler
+- policy details: show all members' agreement in a table below the chart
 - test on phone
 - chart
   - disable zoom

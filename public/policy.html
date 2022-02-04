@@ -34,11 +34,6 @@
       .setAttribute('href', `https://theyvoteforyou.org.au/policies/${id}`)
 
     plotAgreements('chartElement', policy.partyAgreements);
-
-    document.getElementById('chartElement')
-      .on('plotly_click', event => {
-        handleHistogramClick(event, policy.memberDetails);
-      });
   });
 
   function plotAgreements(element, partyAgreements) {
@@ -69,23 +64,6 @@
     };
 
     Plotly.newPlot(element, traces, layout, config);
-  }
-
-  function handleHistogramClick(event, memberDetails) {
-    const party = event.points[0].data.name;
-    const partyMembers = memberDetails.filter(m => m.party === party);
-
-    const members = [];
-    for (const i of event.points[0].pointIndices) {
-      members.push(partyMembers[i]);
-    }
-
-    document.getElementById('membersDataElement').replaceChildren();
-    for (const member of members) {
-      const el = document.createElement('li');
-      el.textContent = `${member.name}, ${member.electorate}`;
-      document.getElementById('membersDataElement').append(el);
-    }
   }
 </script>
 </html>
