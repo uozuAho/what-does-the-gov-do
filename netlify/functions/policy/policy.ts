@@ -25,6 +25,7 @@ interface PartyAgreement {
 interface MemberDetails {
   name: string;
   party: string;
+  colour: string | null;
   electorate: string;
   agreement: number;
 }
@@ -97,6 +98,7 @@ function toMemberDetails(pc: TvfyPersonComparison): MemberDetails {
   return {
     name: `${pc.person.latest_member.name.first} ${pc.person.latest_member.name.last}`,
     party: pc.person.latest_member.party,
+    colour: partyColour(pc.person.latest_member.party),
     electorate: pc.person.latest_member.electorate,
     agreement: Number(pc.agreement)
   };

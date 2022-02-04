@@ -24,6 +24,7 @@
   <table>
     <thead>
       <tr>
+        <th></th>
         <th>Party</th>
         <th>Name</th>
         <th>Electorate</th>
@@ -38,6 +39,7 @@
   <table>
     <thead>
       <tr>
+        <th></th>
         <th>Party</th>
         <th>Name</th>
         <th>Electorate</th>
@@ -50,6 +52,7 @@
 
   <template id="row-template">
     <tr>
+      <td id="rt-colour"></td>
       <td id="rt-party"></td>
       <td id="rt-name"></td>
       <td id="rt-electorate"></td>
@@ -75,6 +78,7 @@
     const memberTable = document.getElementById('member-table');
     for (const member of policy.memberDetails.sort((a, b) => a.agreement - b.agreement)) {
       const row = document.querySelector('#row-template').content.cloneNode(true);
+      row.querySelector('#rt-colour').style.backgroundColor = member.colour;
       row.querySelector('#rt-party').textContent = member.party;
       row.querySelector('#rt-name').textContent = member.name;
       row.querySelector('#rt-electorate').textContent = member.electorate;
@@ -136,6 +140,7 @@
     selectedMembersTable.replaceChildren();
     for (const member of members) {
       const row = document.querySelector('#row-template').content.cloneNode(true);
+      row.querySelector('#rt-colour').style.backgroundColor = member.colour;
       row.querySelector('#rt-party').textContent = member.party;
       row.querySelector('#rt-name').textContent = member.name;
       row.querySelector('#rt-electorate').textContent = member.electorate;

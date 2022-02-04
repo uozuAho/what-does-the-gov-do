@@ -13,11 +13,9 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
+- check plot vs table: data match?
 - list of MPs on click
   - add links to member
-- check plot vs table: data match?
-- member table:
-  - show party colour
 ## feedback
 - policy list is overwhelming. show me policies grouped by area of concern
 - once click on a policy: show in big center text: this is the policy, what it means
