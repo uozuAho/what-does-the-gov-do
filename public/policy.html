@@ -58,7 +58,7 @@
     <tr>
       <td id="rt-colour"></td>
       <td id="rt-party"></td>
-      <td id="rt-name"></td>
+      <td><a id="rt-name"></a></td>
       <td id="rt-electorate"></td>
       <td id="rt-agreement"></td>
     </tr>
@@ -85,6 +85,8 @@
       row.querySelector('#rt-colour').style.backgroundColor = member.colour;
       row.querySelector('#rt-party').textContent = member.party;
       row.querySelector('#rt-name').textContent = member.name;
+      row.querySelector('#rt-name').setAttribute('href',
+        `https://theyvoteforyou.org.au/search?query=${encodeURI(member.name)}`);
       row.querySelector('#rt-electorate').textContent = member.electorate;
       row.querySelector('#rt-agreement').textContent = member.agreement;
       memberTable.appendChild(row);
@@ -147,6 +149,8 @@
       row.querySelector('#rt-colour').style.backgroundColor = member.colour;
       row.querySelector('#rt-party').textContent = member.party;
       row.querySelector('#rt-name').textContent = member.name;
+      row.querySelector('#rt-name').setAttribute('href',
+        `https://theyvoteforyou.org.au/search?query=${encodeURI(member.name)}`);
       row.querySelector('#rt-electorate').textContent = member.electorate;
       row.querySelector('#rt-agreement').textContent = member.agreement;
       selectedMembersTable.appendChild(row);

@@ -13,8 +13,6 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
-- MP tables
-  - add links to member
 ## feedback
 - policy list is overwhelming. show me policies grouped by area of concern
 - once click on a policy: show in big center text: this is the policy, what it means
