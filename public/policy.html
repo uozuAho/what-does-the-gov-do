@@ -18,8 +18,23 @@
 
   <div id="chartElement" style="width:1000px;height:700px;"></div>
 
-  <ul id="membersDataElement"></ul>
+  <h3>Selected members</h3>
+  <p>Click on a bar in the chart to see MPs within that bar</p>
+  <button id="btn-clear-members" onclick="clearSelectedMembers()">Clear</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Party</th>
+        <th>Name</th>
+        <th>Electorate</th>
+        <th>Agreement</th>
+      </tr>
+    </thead>
+    <tbody id="tbl-selected-members">
+    </tbody>
+  </table>
 
+  <h3>All members</h3>
   <table>
     <thead>
       <tr>
@@ -73,6 +88,11 @@
       });
   });
 
+  function clearSelectedMembers() {
+    const selectedMembersTable = document.getElementById('tbl-selected-members');
+    selectedMembersTable.replaceChildren();
+  }
+
   function plotAgreements(element, partyAgreements) {
     const traces = partyAgreements.map(a => ({
       name: a.party,
@@ -112,11 +132,15 @@
       members.push(partyMembers[i]);
     }
 
-    document.getElementById('membersDataElement').replaceChildren();
+    const selectedMembersTable = document.getElementById('tbl-selected-members');
+    selectedMembersTable.replaceChildren();
     for (const member of members) {
-      const el = document.createElement('li');
-      el.textContent = `${member.name}, ${member.electorate}`;
-      document.getElementById('membersDataElement').append(el);
+      const row = document.querySelector('#row-template').content.cloneNode(true);
+      row.querySelector('#rt-party').textContent = member.party;
+      row.querySelector('#rt-name').textContent = member.name;
+      row.querySelector('#rt-electorate').textContent = member.electorate;
+      row.querySelector('#rt-agreement').textContent = member.agreement;
+      selectedMembersTable.appendChild(row);
     }
   }
 </script>

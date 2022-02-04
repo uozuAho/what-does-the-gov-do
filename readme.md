@@ -14,8 +14,6 @@ ntl dev
 # To do
 - docs: where the data is from, what it means
 - list of MPs on click
-  - match table formatting
-  - add 'clear' button
   - add links to member
 - check plot vs table: data match?
 - member table:
