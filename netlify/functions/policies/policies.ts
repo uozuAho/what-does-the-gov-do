@@ -10,5 +10,8 @@ export const handler: Handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify(policies),
+    headers: {
+      'Cache-Control': "max-age=300, public"
+    }
   }
 }
