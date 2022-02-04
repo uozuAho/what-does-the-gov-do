@@ -71,7 +71,8 @@ function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
     return map;
   }, map);
 
-  return Array.from(map.values());
+  return Array.from(map.values()).sort((a, b) => {
+    return isKnownParty(a.party) ? 1 : isKnownParty(b.party) ? -1 : 0});
 }
 
 const PARTY_COLOURS = {
@@ -80,6 +81,10 @@ const PARTY_COLOURS = {
   "Australian Labor Party": "red",
   "Australian Greens": "green",
 };
+
+function isKnownParty(party: string) {
+  return Object.getOwnPropertyNames(PARTY_COLOURS).includes(party)
+}
 
 function partyColour(party: string): string | null {
   return PARTY_COLOURS[party] ?? null;

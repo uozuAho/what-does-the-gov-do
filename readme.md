@@ -13,7 +13,6 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
-- known party colors at top of legend
 - just show party name on hover
 ## nice to have
 - loading indicator
