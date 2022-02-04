@@ -21,7 +21,8 @@ ntl dev
 - better 'for against' indicator text/images
 ## nice to have
 - loading indicator
-- policy details: show all members' agreement in a table below the chart
+- policy details: show all members' agreement in a table below the chart, ie
+  no click handler
 - test on phone
 - chart
   - disable zoom
