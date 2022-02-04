@@ -19,6 +19,28 @@
   <div id="chartElement" style="width:1000px;height:700px;"></div>
 
   <ul id="membersDataElement"></ul>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Party</th>
+        <th>Name</th>
+        <th>Electorate</th>
+        <th>Agreement</th>
+      </tr>
+    </thead>
+    <tbody id="member-table">
+    </tbody>
+  </table>
+
+  <template id="row-template">
+    <tr>
+      <td id="rt-party"></td>
+      <td id="rt-name"></td>
+      <td id="rt-electorate"></td>
+      <td id="rt-agreement"></td>
+    </tr>
+  </template>
 </body>
 
 <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
@@ -34,6 +56,16 @@
       .setAttribute('href', `https://theyvoteforyou.org.au/policies/${id}`)
 
     plotAgreements('chartElement', policy.partyAgreements);
+
+    const memberTable = document.getElementById('member-table');
+    for (const member of policy.memberDetails.sort((a, b) => a.agreement - b.agreement)) {
+      const row = document.querySelector('#row-template').content.cloneNode(true);
+      row.querySelector('#rt-party').textContent = member.party;
+      row.querySelector('#rt-name').textContent = member.name;
+      row.querySelector('#rt-electorate').textContent = member.electorate;
+      row.querySelector('#rt-agreement').textContent = member.agreement;
+      memberTable.appendChild(row);
+    }
 
     document.getElementById('chartElement')
       .on('plotly_click', event => {
