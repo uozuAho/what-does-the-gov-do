@@ -71,8 +71,11 @@ function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
     return map;
   }, map);
 
+  // The sort puts known parties at the bottom - this has the effect of the
+  // bars for known parties appearing at the the bottom of each 'stack'
+  // in the histogram, which looks nicer IMO.
   return Array.from(map.values()).sort((a, b) => {
-    return isKnownParty(a.party) ? 1 : isKnownParty(b.party) ? -1 : 0});
+    return isKnownParty(a.party) ? -1 : isKnownParty(b.party) ? 1 : 0});
 }
 
 const PARTY_COLOURS = {
