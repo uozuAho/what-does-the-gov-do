@@ -13,7 +13,6 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
-- just show party name on hover
 ## nice to have
 - loading indicator
 - policy details: show all members' agreement in a table below the chart, ie
