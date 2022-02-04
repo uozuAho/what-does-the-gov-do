@@ -13,10 +13,11 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
+- bring back list of MPs on click
+-
 ## feedback
 - policy list is overwhelming. show me policies grouped by area of concern
 - once click on a policy: show in big center text: this is the policy, what it means
-- bring back list of MPs on click
 - better 'for against' indicator text/images
 ## nice to have
 - loading indicator
