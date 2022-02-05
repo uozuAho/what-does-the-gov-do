@@ -30,6 +30,9 @@
     issue." Click on a policy to see how much each party/MP supports it.
     </p>
 
+    <label for="search">Search</label>
+    <input id="search" name="search" type="text" onkeyup="search()"/>
+
     <table class="table table-striped">
       <thead>
         <tr>
@@ -51,10 +54,10 @@
 </body>
 
 <script>
+  let policies = [];
   document.addEventListener('DOMContentLoaded', async (event) => {
-    const policies = await fetch('/.netlify/functions/policies').then(r => r.json());
+    policies = await fetch('/.netlify/functions/policies').then(r => r.json());
     const table = document.getElementById('tbl-policies');
-    const listElement = document.getElementById('policy-list');
     for (const policy of policies) {
       const row = document.querySelector('#row-template').content.cloneNode(true);
       row.querySelector('#rt-name').textContent = policy.name;
@@ -62,5 +65,20 @@
       table.appendChild(row);
     }
   });
+
+  function search() {
+    const searchText = document.getElementById('search').value;
+    console.log(searchText);
+    const table = document.getElementById('tbl-policies');
+    table.replaceChildren();
+    for (const policy of policies) {
+      if (policy.name.includes(searchText)) {
+        const row = document.querySelector('#row-template').content.cloneNode(true);
+        row.querySelector('#rt-name').textContent = policy.name;
+        row.querySelector('#rt-name').setAttribute('href', `policy?id=${policy.id}`);
+        table.appendChild(row);
+      }
+    }
+  }
 </script>
 </html>
