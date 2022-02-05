@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 /**
  * https://theyvoteforyou.org.au/help/data#policy
  */
-export interface TvfyPolicy {
+export interface TvfyPolicyDetails {
   id: number;
   name: string;
   description: string;
@@ -37,7 +37,7 @@ export interface TvfyPersonComparison {
   voted: boolean;
 }
 
-export async function policy(apikey: string, id: number): Promise<TvfyPolicy> {
+export async function policy(apikey: string, id: number): Promise<TvfyPolicyDetails> {
   return await fetch(`https://theyvoteforyou.org.au/api/v1/policies/${id}.json?key=${apikey}`)
-    .then(response => response.json()) as TvfyPolicy;
+    .then(response => response.json()) as TvfyPolicyDetails;
 }

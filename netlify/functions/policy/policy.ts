@@ -1,5 +1,9 @@
 import { Handler } from '@netlify/functions';
-import { Tvfy, TvfyPersonComparison, TvfyPolicy } from '../../lib/tvfy';
+import { Tvfy } from '../../lib/tvfy';
+import {
+  TvfyPersonComparison,
+  TvfyPolicyDetails }
+from '../../lib/tvfy/policy';
 
 /**
  * Expected request params:
@@ -54,7 +58,7 @@ export const handler: Handler = async (event, context) => {
   }
 }
 
-function extractPartyAgreements(policy: TvfyPolicy): PartyAgreement[] {
+function extractPartyAgreements(policy: TvfyPolicyDetails): PartyAgreement[] {
   const map: Map<string, PartyAgreement> = new Map();
 
   policy.people_comparisons.reduce((map, pc) => {
