@@ -30,23 +30,36 @@
     issue." Click on a policy to see how much each party/MP supports it.
     </p>
 
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody id="tbl-policies">
+      </tbody>
+    </table>
+
     <ul id="policy-list"></ul>
   </div>
 
-  <template id="policy-template">
-    <li><a id="pt-link"></a></li>
+  <template id="row-template">
+    <tr>
+      <td><a id="rt-name"></a></td>
+    </tr>
   </template>
 </body>
 
 <script>
   document.addEventListener('DOMContentLoaded', async (event) => {
     const policies = await fetch('/.netlify/functions/policies').then(r => r.json());
+    const table = document.getElementById('tbl-policies');
     const listElement = document.getElementById('policy-list');
     for (const policy of policies) {
-      const policyElement = document.querySelector('#policy-template').content.cloneNode(true);
-      policyElement.querySelector('#pt-link').textContent = policy.name;
-      policyElement.querySelector('#pt-link').setAttribute('href', `policy?id=${policy.id}`);
-      listElement.appendChild(policyElement);
+      const row = document.querySelector('#row-template').content.cloneNode(true);
+      row.querySelector('#rt-name').textContent = policy.name;
+      row.querySelector('#rt-name').setAttribute('href', `policy?id=${policy.id}`);
+      table.appendChild(row);
     }
   });
 </script>
