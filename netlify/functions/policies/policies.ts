@@ -1,11 +1,8 @@
 import { Handler } from '@netlify/functions';
-import fetch from 'node-fetch';
+import { Tvfy } from '../../lib/tvfy';
 
 export const handler: Handler = async (event, context) => {
-  const apiKey = process.env.TVFY_API_KEY;
-
-  const policies = await fetch(`https://theyvoteforyou.org.au/api/v1/policies.json?key=${apiKey}`)
-    .then(response => response.json());
+  const policies = await new Tvfy().policies();
 
   return {
     statusCode: 200,
