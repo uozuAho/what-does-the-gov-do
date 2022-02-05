@@ -14,7 +14,6 @@ ntl dev
 # To do
 - docs: where the data is from, what it means
 - how to contact me for errors etc.
-- change 'policy' to 'votes'?
 - don't collapse nav bar
 - loading indicators
 - test on phone
@@ -28,3 +27,6 @@ ntl dev
 - chart
   - disable zoom
   - fit to screen
+- html templating tool. eg
+  - nav bar is repetitive
+  - changing links is tedious and error prone
