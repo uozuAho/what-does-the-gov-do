@@ -22,9 +22,9 @@
   </nav>
 
   <div class="container-fluid">
-    <h1 id="policy-title">Policy</h1>
-    <p id="policy-description"></p>
-    <a id="policy-tvfy-link">View policy on They Vote For You</a>
+    <h1 id="policy-title" class="text-center display-5">Policy</h1>
+    <p id="policy-description" class="text-center lead"></p>
+    <a id="policy-tvfy-link" class="text-center">View policy on They Vote For You</a>
 
     <div class="container-fluid">
       <div id="chartElement"></div>
@@ -85,7 +85,7 @@
 
     const policy = await fetch(`/.netlify/functions/policy?id=${id}`).then(r => r.json());
 
-    document.getElementById('policy-title').textContent = policy.title;
+    document.getElementById('policy-title').textContent = `Policy: ${policy.title}`;
     document.getElementById('policy-description').textContent = policy.description;
     document.getElementById('policy-tvfy-link')
       .setAttribute('href', `https://theyvoteforyou.org.au/policies/${id}`)
