@@ -1,41 +1,4 @@
-import fetch from 'node-fetch';
-
-/**
- * https://theyvoteforyou.org.au/help/data#policy
- */
-export interface TvfyPolicy {
-  id: number;
-  name: string;
-  description: string;
-  provisional: boolean;
-  policy_divisions: TvfyPolicyDivision[]
-  people_comparisons: TvfyPersonComparison[]
-}
-
-export interface TvfyPolicyDivision {
-  // incomplete
-  division: {};
-  vote: string;
-  strong: boolean;
-}
-
-export interface TvfyPersonComparison {
-  person: {
-    id: number;
-    latest_member: {
-      id: number;
-      name: {
-        first: string;
-        last: string;
-      };
-      electorate: string;
-      house: string;
-      party: string;
-    }
-  };
-  agreement: string;
-  voted: boolean;
-}
+import { policy } from './policy';
 
 export class Tvfy {
   private _apiKey: string;
@@ -44,8 +7,5 @@ export class Tvfy {
     this._apiKey = process.env.TVFY_API_KEY;
   }
 
-  public async policy(id: number): Promise<TvfyPolicy> {
-    return await fetch(`https://theyvoteforyou.org.au/api/v1/policies/${id}.json?key=${this._apiKey}`)
-      .then(response => response.json()) as TvfyPolicy;
-  }
+  public async policy(id: number) { return policy(this._apiKey, id); }
 }
