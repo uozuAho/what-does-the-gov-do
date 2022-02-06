@@ -15,6 +15,8 @@ ntl dev
 ```
 
 # To do
+- bug: https://what-does-the-government-do.netlify.app/mp_votes: goes to wrong policy
+- test on browsers
 - loading indicators
 - test on phone
 ## nice to have

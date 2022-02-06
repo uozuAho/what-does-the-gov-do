@@ -35,7 +35,9 @@ interface MemberDetails {
 }
 
 export const handler: Handler = async (event, context) => {
+  console.log(event);
   const { id } = event.queryStringParameters;
+  console.log(id);
   const tvfy = new Tvfy();
 
   const policy = await tvfy.policy(Number(id));
