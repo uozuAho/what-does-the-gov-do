@@ -35,9 +35,7 @@ interface MemberDetails {
 }
 
 export const handler: Handler = async (event, context) => {
-  console.log(event);
   const { id } = event.queryStringParameters;
-  console.log(id);
   const tvfy = new Tvfy();
 
   const policy = await tvfy.policy(Number(id));
@@ -54,9 +52,6 @@ export const handler: Handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify(policyDetails),
-    headers: {
-      'Cache-Control': "max-age=300, public"
-    }
   }
 }
 
