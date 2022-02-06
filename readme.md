@@ -12,8 +12,6 @@ ntl dev
 ```
 
 # To do
-- make it clear this is aus federal parliament
-- don't collapse nav bar
 - annotate screenshot in 'how it works' page
 - loading indicators
 - test on phone
