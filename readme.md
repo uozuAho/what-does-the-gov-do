@@ -15,7 +15,6 @@ ntl dev
 ```
 
 # To do
-- disable zoom
 - test on all browsers
 - test on phones
 ## nice to have
