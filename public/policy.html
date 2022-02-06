@@ -8,6 +8,7 @@
 </head>
 
 <body>
+  <!-- Navbar -->
   <header class="d-flex flex-wrap justify-content-center py-1 mb-4 border-bottom">
     <a
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
@@ -25,7 +26,12 @@
     </ul>
   </header>
 
-  <div class="container-fluid">
+  <!-- Spinner -->
+  <div class="container-fluid" id="spinner" style="padding-top: 2rem;">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div id="main-bit" class="container-fluid" hidden>
     <!-- Title -->
     <h1 id="policy-title" class="text-center display-5">Policy</h1>
     <p id="policy-description" class="text-center lead"></p>
@@ -139,6 +145,10 @@
     document.getElementById('policy-description').textContent = policy.description;
     document.getElementById('policy-tvfy-link')
       .setAttribute('href', `https://theyvoteforyou.org.au/policies/${id}`)
+
+    // un-hide chart here, otherwise chart width gets messed up
+    document.getElementById('spinner').setAttribute('hidden', true);
+    document.getElementById('main-bit').removeAttribute('hidden');
 
     plotAgreements('chartElement', policy.partyAgreements);
 
