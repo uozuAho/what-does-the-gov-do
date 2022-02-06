@@ -12,7 +12,6 @@ ntl dev
 ```
 
 # To do
-- better 'for/against' indicator on chart
 - annotate screenshot in 'how it works' page
 - loading indicators
 - test on phone

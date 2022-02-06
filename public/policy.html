@@ -78,42 +78,45 @@
           <p></p>
         </div>
       </div>
+    </div>
 
-      <h3>Selected members</h3>
-      <p>Click on a bar in the chart to see MPs within that bar</p>
-      <button id="btn-clear-members" onclick="clearSelectedMembers()">Clear</button>
-      <table style="
-        table-layout: fixed;
-        width: 100%;">
-        <thead>
-          <tr>
-            <th style="width: 20px;"></th>
-            <th>Party</th>
-            <th>Name</th>
-            <th>Electorate</th>
-            <th>Agreement</th>
-          </tr>
-        </thead>
-        <tbody id="tbl-selected-members">
-        </tbody>
-      </table>
+    <h3 style="padding-top: 2rem;">Selected members</h3>
+    <div style="display: flex; flex-direction: row;">
+      <p style="flex: 5;">Click on a bar in the chart to see MPs within that bar</p>
+      <button id="btn-clear-members" class="btn btn-secondary" onclick="clearSelectedMembers()">Clear</button>
+    </div>
+    <table style="
+      table-layout: fixed;
+      width: 100%;">
+      <thead>
+        <tr>
+          <th style="width: 20px;"></th>
+          <th>Party</th>
+          <th>Name</th>
+          <th>Electorate</th>
+          <th>Agreement</th>
+        </tr>
+      </thead>
+      <tbody id="tbl-selected-members">
+      </tbody>
+    </table>
 
-      <h3>All members</h3>
-      <table style="
-        table-layout: fixed;
-        width: 100%;">
-        <thead>
-          <tr>
-            <th style="width: 20px;"></th>
-            <th>Party</th>
-            <th>Name</th>
-            <th>Electorate</th>
-            <th>Agreement</th>
-          </tr>
-        </thead>
-        <tbody id="member-table">
-        </tbody>
-      </table>
+    <h3 style="padding-top: 2rem;">All members</h3>
+    <table style="
+      table-layout: fixed;
+      width: 100%;">
+      <thead>
+        <tr>
+          <th style="width: 20px;"></th>
+          <th>Party</th>
+          <th>Name</th>
+          <th>Electorate</th>
+          <th>Agreement</th>
+        </tr>
+      </thead>
+      <tbody id="member-table">
+      </tbody>
+    </table>
   </div>
 
   <template id="row-template">
