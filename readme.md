@@ -12,7 +12,6 @@ ntl dev
 ```
 
 # To do
-- better 'for/against' indicator on chart
 - annotate screenshot in 'how it works' page
 - loading indicators
 - test on phone
@@ -23,8 +22,8 @@ ntl dev
 - colour on chart shoulkd also be displayed in table
 ## nice to have
 - chart
+  - use blank space at top
   - disable zoom
-  - fit to screen
 - html templating tool. eg
   - nav bar is repetitive
   - changing links is tedious and error prone

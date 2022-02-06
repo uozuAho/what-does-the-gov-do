@@ -26,6 +26,7 @@
   </header>
 
   <div class="container-fluid">
+    <!-- Title -->
     <h1 id="policy-title" class="text-center display-5">Policy</h1>
     <p id="policy-description" class="text-center lead"></p>
     <div class="container-fluid" style="display: flex; flex-direction: column;">
@@ -33,13 +34,57 @@
       <a id="policy-tvfy-link" class="text-center">View policy on They Vote For You</a>
     </div>
 
+    <!-- Chart area -->
     <div class="container-fluid">
+      <!-- Plotly chart -->
       <div id="chartElement"></div>
+
+      <!-- against/for indicators -->
+      <div style="display: flex; flex-direction: row; justify-content: center;">
+        <div style="width: 80px;">
+          <p></p>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: center; flex: 5; height: 30px;">
+          <span style="flex: 1;"></span>
+          <div style="flex: 1; display: flex; flex-direction: row; justify-content: right;">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 25 25">
+              <path
+                style="fill:#232326"
+                d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z"
+                stroke="black"
+                stroke-width="1"/>
+            </svg>
+            <p style="padding-left: 1rem;">against</p>
+          </div>
+          <p style="flex: 1; text-align: center;">Agreement</p>
+          <div style="flex: 1; display: flex; flex-direction: row;">
+            <p style="padding-right: 1rem;">for</p>
+            <svg
+              style="transform: rotate(180deg);"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 25 25">
+              <path
+                style="fill:#232326"
+                d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z"
+                stroke="black"
+                stroke-width="1"/>
+            </svg>
+          </div>
+          <span style="flex: 1;"></span>
+        </div>
+        <div style="width: 280px;">
+          <p></p>
+        </div>
+      </div>
     </div>
 
-    <h3>Selected members</h3>
-    <p>Click on a bar in the chart to see MPs within that bar</p>
-    <button id="btn-clear-members" onclick="clearSelectedMembers()">Clear</button>
+    <h3 style="padding-top: 2rem;">Selected members</h3>
+    <div style="display: flex; flex-direction: row;">
+      <p style="flex: 5;">Click on a bar in the chart to see MPs within that bar</p>
+      <button id="btn-clear-members" class="btn btn-secondary" onclick="clearSelectedMembers()">Clear</button>
+    </div>
     <table style="
       table-layout: fixed;
       width: 100%;">
@@ -56,7 +101,7 @@
       </tbody>
     </table>
 
-    <h3>All members</h3>
+    <h3 style="padding-top: 2rem;">All members</h3>
     <table style="
       table-layout: fixed;
       width: 100%;">
@@ -137,8 +182,12 @@
 
     const layout = {
       barmode: "stack",
+      margin: {
+        t: 10,
+        b: 10
+      },
       xaxis: {
-        title: 'Agreement',
+        showticklabels: false
       },
       yaxis: {
         title: 'Number of MPs'
