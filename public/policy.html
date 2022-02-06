@@ -26,6 +26,7 @@
   </header>
 
   <div class="container-fluid">
+    <!-- Title -->
     <h1 id="policy-title" class="text-center display-5">Policy</h1>
     <p id="policy-description" class="text-center lead"></p>
     <div class="container-fluid" style="display: flex; flex-direction: column;">
@@ -33,7 +34,9 @@
       <a id="policy-tvfy-link" class="text-center">View policy on They Vote For You</a>
     </div>
 
+    <!-- Chart area -->
     <div class="container-fluid">
+      <!-- Plotly chart -->
       <div id="chartElement"></div>
 
       <!-- against/for indicators -->
@@ -76,41 +79,41 @@
         </div>
       </div>
 
-    <h3>Selected members</h3>
-    <p>Click on a bar in the chart to see MPs within that bar</p>
-    <button id="btn-clear-members" onclick="clearSelectedMembers()">Clear</button>
-    <table style="
-      table-layout: fixed;
-      width: 100%;">
-      <thead>
-        <tr>
-          <th style="width: 20px;"></th>
-          <th>Party</th>
-          <th>Name</th>
-          <th>Electorate</th>
-          <th>Agreement</th>
-        </tr>
-      </thead>
-      <tbody id="tbl-selected-members">
-      </tbody>
-    </table>
+      <h3>Selected members</h3>
+      <p>Click on a bar in the chart to see MPs within that bar</p>
+      <button id="btn-clear-members" onclick="clearSelectedMembers()">Clear</button>
+      <table style="
+        table-layout: fixed;
+        width: 100%;">
+        <thead>
+          <tr>
+            <th style="width: 20px;"></th>
+            <th>Party</th>
+            <th>Name</th>
+            <th>Electorate</th>
+            <th>Agreement</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-selected-members">
+        </tbody>
+      </table>
 
-    <h3>All members</h3>
-    <table style="
-      table-layout: fixed;
-      width: 100%;">
-      <thead>
-        <tr>
-          <th style="width: 20px;"></th>
-          <th>Party</th>
-          <th>Name</th>
-          <th>Electorate</th>
-          <th>Agreement</th>
-        </tr>
-      </thead>
-      <tbody id="member-table">
-      </tbody>
-    </table>
+      <h3>All members</h3>
+      <table style="
+        table-layout: fixed;
+        width: 100%;">
+        <thead>
+          <tr>
+            <th style="width: 20px;"></th>
+            <th>Party</th>
+            <th>Name</th>
+            <th>Electorate</th>
+            <th>Agreement</th>
+          </tr>
+        </thead>
+        <tbody id="member-table">
+        </tbody>
+      </table>
   </div>
 
   <template id="row-template">
@@ -176,7 +179,12 @@
 
     const layout = {
       barmode: "stack",
+      margin: {
+        t: 10,
+        b: 10
+      },
       xaxis: {
+        showticklabels: false
       },
       yaxis: {
         title: 'Number of MPs'
