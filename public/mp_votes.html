@@ -76,7 +76,8 @@
 
   function search() {
     const searchText = document.getElementById('search').value;
-    const filteredPolicies = policies.filter(p => p.name.includes(searchText));
+    const filteredPolicies = policies
+      .filter(p => p.name.toUpperCase().includes(searchText.toUpperCase()));
     populateTable(filteredPolicies);
   }
 

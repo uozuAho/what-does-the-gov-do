@@ -15,11 +15,11 @@ ntl dev
 ```
 
 # To do
+- disable zoom
 - test on all browsers
 - test on phones
 ## nice to have
 - chart
-  - disable zoom
   - better touch device support
 - html templating tool. eg
   - nav bar is repetitive
