@@ -12,9 +12,7 @@ ntl dev
 ```
 
 # To do
-- docs: where the data is from, what it means
 - make it clear this is aus federal parliament
-- how to contact me for errors etc.
 - don't collapse nav bar
 - annotate screenshot in 'how it works' page
 - loading indicators
@@ -23,7 +21,6 @@ ntl dev
 - policy list is overwhelming. show me policies grouped by area of concern
 - once click on a policy: show in big center text: this is the policy, what it means
 - better 'for against' indicator text/images
-- little card looks silly
 - colour on chart shoulkd also be displayed in table
 ## nice to have
 - chart
