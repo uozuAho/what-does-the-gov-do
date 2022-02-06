@@ -13,8 +13,10 @@ ntl dev
 
 # To do
 - docs: where the data is from, what it means
+- make it clear this is aus federal parliament
 - how to contact me for errors etc.
 - don't collapse nav bar
+- annotate screenshot in 'how it works' page
 - loading indicators
 - test on phone
 ## feedback
