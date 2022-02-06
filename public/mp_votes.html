@@ -40,17 +40,19 @@
       <label class="input-group-text" for="search">Search for a policy</label>
     </div>
 
-    <table class="table table-striped">
+    <div id="spinner" style="padding-top: 2rem;">
+      <div class="spinner-border" role="status"></div>
+    </div>
+
+    <table id="tbl-policies" class="table table-striped" hidden>
       <thead>
         <tr>
           <th>Title</th>
         </tr>
       </thead>
-      <tbody id="tbl-policies">
+      <tbody id="tbl-policies-body">
       </tbody>
     </table>
-
-    <ul id="policy-list"></ul>
   </div>
 
   <template id="row-template">
@@ -65,6 +67,8 @@
   document.addEventListener('DOMContentLoaded', async (event) => {
     policies = await fetch('/.netlify/functions/policies').then(r => r.json());
     populateTable(policies);
+    document.getElementById('spinner').setAttribute('hidden', true);
+    document.getElementById('tbl-policies').removeAttribute('hidden');
   });
 
   function search() {
@@ -74,7 +78,7 @@
   }
 
   function populateTable(policies) {
-    const table = document.getElementById('tbl-policies');
+    const table = document.getElementById('tbl-policies-body');
     table.replaceChildren();
     for (const policy of policies) {
       const row = document.querySelector('#row-template').content.cloneNode(true);
