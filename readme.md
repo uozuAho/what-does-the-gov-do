@@ -15,14 +15,14 @@ ntl dev
 ```
 
 # To do
-- bug: https://what-does-the-government-do.netlify.app/mp_votes: goes to wrong policy
-- test on browsers
 - loading indicators
-- test on phone
+- test on all browsers
+- test on phones
 ## nice to have
 - chart
-  - use blank space at top
   - disable zoom
+  - better touch device support
 - html templating tool. eg
   - nav bar is repetitive
   - changing links is tedious and error prone
+- cache policy api

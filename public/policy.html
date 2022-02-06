@@ -45,8 +45,7 @@
           <p></p>
         </div>
         <div style="display: flex; flex-direction: row; justify-content: center; flex: 5; height: 30px;">
-          <span style="flex: 1;"></span>
-          <div style="flex: 1; display: flex; flex-direction: row; justify-content: right;">
+          <div style="flex: 1; display: flex; flex-direction: row; justify-content: right; min-width: 20%;">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 25 25">
@@ -59,7 +58,7 @@
             <p style="padding-left: 1rem;">against</p>
           </div>
           <p style="flex: 1; text-align: center;"></p>
-          <div style="flex: 1; display: flex; flex-direction: row;">
+          <div style="flex: 1; display: flex; flex-direction: row; min-width: 20%;">
             <p style="padding-right: 1rem;">for</p>
             <svg
               style="transform: rotate(180deg);"
@@ -72,7 +71,6 @@
                 stroke-width="1"/>
             </svg>
           </div>
-          <span style="flex: 1;"></span>
         </div>
         <div style="width: 280px;">
           <p></p>
@@ -191,7 +189,8 @@
       },
       yaxis: {
         title: 'Number of MPs'
-      }
+      },
+      showlegend: window.innerWidth >= 850
     };
 
     const config = {
