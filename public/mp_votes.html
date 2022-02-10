@@ -51,6 +51,7 @@
       <thead>
         <tr>
           <th>Title</th>
+          <th>Last updated</th>
         </tr>
       </thead>
       <tbody id="tbl-policies-body">
@@ -61,6 +62,7 @@
   <template id="row-template">
     <tr>
       <td><a id="rt-name"></a></td>
+      <td id="rt-updated"></td>
     </tr>
   </template>
 </body>
@@ -88,6 +90,7 @@
       const row = document.querySelector('#row-template').content.cloneNode(true);
       row.querySelector('#rt-name').textContent = policy.name;
       row.querySelector('#rt-name').setAttribute('href', `policy?id=${policy.id}`);
+      row.querySelector('#rt-updated').textContent = policy.last_edited_at;
       table.appendChild(row);
     }
   }

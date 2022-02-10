@@ -15,8 +15,6 @@ ntl dev
 ```
 
 # To do
-- test on all browsers
-- test on phones
 ## nice to have
 - chart
   - better touch device support
